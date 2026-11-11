@@ -1,57 +1,384 @@
+Index · HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guilherme Mota</title>
-    <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guilherme Mota | Desenvolvedor</title>
+<meta name="description" content="Portfólio de Guilherme Mota, estudante de Ciência da Computação na UFU e desenvolvedor.">
+<meta name="theme-color" content="#7B2FE0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9FF;--surface:#fff;--ink:#1B1233;--muted:#5E5878;--line:#E8E1F5;
+  --brand:#7B2FE0;--brand-deep:#5B1FB8;--soft:#F1E8FF;--ok:#12A67A;
+  --r:28px;--font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F0A1C;--surface:#181127;--ink:#F3EFFA;--muted:#A89FC2;--line:#2A2140;--brand:#A66BFF;--soft:#231A3A;--ok:#3DDBAA;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F0A1C;--surface:#181127;--ink:#F3EFFA;--muted:#A89FC2;--line:#2A2140;--brand:#A66BFF;--soft:#231A3A;--ok:#3DDBAA;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:12px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+section{padding:96px 0 0}
+h2{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.15;letter-spacing:-.03em;font-weight:800;margin-bottom:14px}
+.lead{color:var(--muted);max-width:56ch;margin-bottom:40px}
+ 
+/* Navegação */
+.nav{position:sticky;top:12px;z-index:50;margin-top:12px}
+.nav .bar{display:flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:8px 10px 8px 20px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.04em;margin-right:auto}
+.logo i{font-style:normal;color:var(--brand)}
+.links{display:flex;gap:2px}
+.links a{padding:8px 15px;border-radius:999px;font-size:.92rem;font-weight:600;color:var(--muted);transition:background .2s,color .2s}
+.links a:hover{color:var(--ink)}
+.links a.on{background:var(--soft);color:var(--brand)}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:1.05rem}
+.menu-btn{display:none}
+ 
+/* Botões */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font:inherit;font-weight:700;font-size:.98rem;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--brand);color:#fff;box-shadow:0 10px 26px -10px var(--brand)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.btn.light{background:#fff;color:var(--brand-deep)}
+ 
+/* Hero */
+.hero{padding-top:72px;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);padding:7px 16px;border-radius:999px;font-size:.88rem;font-weight:600;margin-bottom:26px}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 25%,transparent)}
+h1{font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.04;letter-spacing:-.045em;font-weight:800;margin-bottom:22px}
+.hero p.lead{font-size:1.12rem;margin-bottom:34px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.photo{position:relative;justify-self:center;width:min(100%,380px);aspect-ratio:4/5;border-radius:48px;background:var(--brand);overflow:hidden;display:grid;place-items:center;transform:rotate(2deg)}
+.photo b{font-size:6rem;color:#fff;opacity:.9;letter-spacing:-.06em}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero > *{animation:rise .7s both}
+.hero > *:nth-child(2){animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+ 
+/* Sobre */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:32px}
+.tile h3{font-size:1.1rem;letter-spacing:-.02em;margin-bottom:10px}
+.tile p{color:var(--muted)}
+.t-about{grid-column:span 4}
+.t-about p+p{margin-top:14px}
+.t-big{grid-column:span 2;background:var(--brand);border:0;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+.t-big strong{font-size:3.4rem;line-height:1;letter-spacing:-.05em}
+.t-big p{color:#fff;opacity:.88;margin-top:8px}
+.t-lang{grid-column:span 3}
+.half{grid-column:span 3}
+.t-goal{grid-column:span 3;background:var(--soft);border-color:transparent}
+.lang{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-weight:600}
+.lang:last-child{border:0}
+.lang span:last-child{color:var(--brand)}
+ 
+/* Formação */
+.path{border-left:2px solid var(--line);margin-left:8px;display:grid;gap:30px;padding-left:34px}
+.step{position:relative}
+.step::before{content:"";position:absolute;left:-43px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--line)}
+.step.now::before{border-color:var(--brand);background:var(--brand)}
+.step h3{font-size:1.2rem;letter-spacing:-.02em}
+.step p{color:var(--muted)}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;background:var(--soft);color:var(--brand);padding:3px 12px;border-radius:999px;margin-bottom:6px}
+ 
+/* Habilidades */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{background:var(--soft);color:var(--ink);font-weight:600;font-size:.95rem;padding:9px 18px;border-radius:999px;transition:background .2s,color .2s}
+.chip:hover{background:var(--brand);color:#fff}
+ 
+/* Projetos */
+.projects{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:10px;min-height:240px;transition:transform .25s}
+.proj:hover{transform:translateY(-4px)}
+.proj.main{background:var(--ink);color:var(--bg);border:0;grid-row:span 2}
+.proj.main p{color:var(--bg);opacity:.75}
+.proj h3{font-size:1.4rem;letter-spacing:-.03em}
+.proj p{color:var(--muted)}
+.proj .go{margin-top:auto;font-weight:700;color:var(--brand)}
+.proj.main .go{color:var(--bg)}
+.proj.soon{border-style:dashed;background:transparent}
+ 
+/* Contato */
+.contact{background:var(--brand-deep);color:#fff;border-radius:44px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact h2{color:#fff}
+.contact .lead{color:#fff;opacity:.85;margin-bottom:28px}
+.links-c{display:grid;gap:12px}
+.links-c a,.links-c button{display:flex;justify-content:space-between;align-items:center;background:rgb(255 255 255 / .12);color:#fff;border:0;font:inherit;font-weight:600;padding:16px 22px;border-radius:20px;cursor:pointer;transition:background .2s;text-align:left}
+.links-c a:hover,.links-c button:hover{background:rgb(255 255 255 / .22)}
+form{display:grid;gap:14px;align-content:start}
+label{font-size:.9rem;font-weight:600}
+input,textarea{width:100%;font:inherit;color:#fff;background:rgb(255 255 255 / .1);border:1px solid rgb(255 255 255 / .25);border-radius:16px;padding:14px 18px;margin-top:6px}
+input::placeholder,textarea::placeholder{color:rgb(255 255 255 / .55)}
+textarea{min-height:130px;resize:vertical}
+input:focus-visible,textarea:focus-visible{outline-color:#fff}
+footer{padding:48px 0;color:var(--muted);font-size:.92rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:13px 24px;border-radius:999px;font-weight:600;transition:transform .35s;z-index:99}
+.toast.show{transform:translate(-50%,0)}
+ 
+@media (max-width:860px){
+  .hero,.contact,.projects{grid-template-columns:1fr}
+  .photo{order:-1;width:min(70%,300px)}
+  .t-about,.t-big,.t-lang,.t-goal,.half{grid-column:span 6}
+  .proj.main{grid-row:auto}
+  .menu-btn{display:grid}
+  .links{display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:10px}
+  .links.open{display:flex}
+  .links a{padding:14px 18px}
+  .nav .bar{position:relative}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li>
-                <a href="index.html">Sobre mim</a>
-            </li>
-             <li>
-                <a href="contact.html">Contato</a>
-            </li>
-        </ul>
-    </nav>
-    <header>
-        <div class="center">
-            <img src="./Eu.jpeg">
+ 
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#inicio" aria-label="Início">guilherme<i>.</i></a>
+      <div class="links" id="links">
+        <a href="#sobre">Sobre</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <button class="icon-btn" id="theme" aria-label="Alternar tema claro e escuro">◐</button>
+      <button class="icon-btn menu-btn" id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</nav>
+ 
+<main class="wrap">
+  <div class="hero" id="inicio">
+    <div>
+      <span class="status">Disponível para estágio</span>
+      <h1>Oi, eu sou o Guilherme.</h1>
+      <p class="lead">Estudante de Ciência da Computação na UFU. Gosto de entender como as coisas funcionam por dentro e de transformar isso em programas e sites que funcionam bem.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contato">Vamos conversar</a>
+        <a class="btn ghost" href="https://github.com/guilhermemotaa" target="_blank" rel="noopener">Ver meu GitHub</a>
+      </div>
+    </div>
+    <div class="photo" aria-label="Foto de Guilherme Mota">
+      <b>GM</b>
+      <img src="./Eu.jpeg" alt="Guilherme Mota" onerror="this.remove()">
+    </div>
+  </div>
+ 
+  <section id="sobre">
+    <h2>Sobre mim</h2>
+    <p class="lead">Quem eu sou e o que busco agora.</p>
+    <div class="bento">
+      <div class="tile t-about">
+        <h3>Programação com base sólida</h3>
+        <p>Tenho 18 anos e, ao longo da graduação, venho construindo uma base forte em programação e lógica computacional, sempre buscando entender as soluções a fundo e de forma eficiente.</p>
+        <p>Trabalho com C, C++, Python, HTML, CSS e JavaScript, o que me permite atuar tanto em programação quanto em desenvolvimento web. Sou dedicado, proativo e curioso, e aprendo rápido novas ferramentas.</p>
+      </div>
+      <div class="tile t-big">
+        <strong>UFU</strong>
+        <p>Ciência da Computação, curso em andamento.</p>
+      </div>
+      <div class="tile t-lang">
+        <h3>Idiomas</h3>
+        <div class="lang"><span>Inglês</span><span>Fluente, TOEFL C1</span></div>
+        <div class="lang"><span>Francês</span><span>Intermediário</span></div>
+        <div class="lang"><span>Português</span><span>Nativo</span></div>
+      </div>
+      <div class="tile t-goal">
+        <h3>O que busco agora</h3>
+        <p>Aprimorar minhas habilidades técnicas, ganhar experiência prática e construir uma trajetória consistente na área de tecnologia.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="experiencia">
+    <h2>Experiência</h2>
+    <p class="lead">Onde já atuei e o que construí na prática.</p>
+    <div class="path">
+      <div class="step">
+        <span class="tag">Empresa júnior</span>
+        <h3>Assessor comercial e desenvolvedor</h3>
+        <p>ASCII, empresa júnior da UFU. Atuei no contato comercial com clientes e no desenvolvimento de soluções.</p>
+        <div class="chips"><span class="chip">SQL</span><span class="chip">Node.js</span><span class="chip">React</span></div>
+      </div>
+    </div>
+    <div class="bento" style="margin-top:40px">
+      <div class="tile half t-big">
+        <strong>1º lugar</strong>
+        <p>Projeto Lumina, em competição de empreendedorismo: ensino de matemática do básico ao nível superior, com agente de IA integrado.</p>
+      </div>
+      <div class="tile half">
+        <h3>Projetos de extensão</h3>
+        <p>Iniciativas da universidade voltadas à comunidade.</p>
+        <div class="chips"><span class="chip">Museu da Computação</span><span class="chip">Conectando Saberes</span></div>
+      </div>
+      <div class="tile half">
+        <h3>Comunidade e competição</h3>
+        <p>4 ciclos no UberHub e participação em maratonas de programação.</p>
+      </div>
+      <div class="tile half t-goal">
+        <h3>API REST e IA</h3>
+        <p>Conhecimento em construção de APIs REST e aplicação de inteligência artificial em produtos.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="formacao">
+    <h2>Formação</h2>
+    <p class="lead">Estudos e certificações.</p>
+    <div class="path">
+      <div class="step now">
+        <span class="tag">Em andamento</span>
+        <h3>Ciência da Computação</h3>
+        <p>Universidade Federal de Uberlândia (UFU), Ensino Superior.</p>
+      </div>
+      <div class="step">
+        <span class="tag">Certificado</span>
+        <h3>TOEFL, nível C1</h3>
+        <p>Inglês avançado, com fluência comprovada.</p>
+      </div>
+      <div class="step">
+        <span class="tag">Estudando</span>
+        <h3>Francês</h3>
+        <p>Nível intermediário.</p>
+      </div>
+      <div class="step">
+        <span class="tag">Bootcamp</span>
+        <h3>Santander, Java Back-end com IA</h3>
+        <p>Desenvolvimento back-end com Java e inteligência artificial.</p>
+      </div>
+      <div class="step">
+        <span class="tag">Imersão</span>
+        <h3>Alura, Engenharia de IA</h3>
+        <p>Imersão prática em engenharia de inteligência artificial.</p>
+      </div>
+    </div>
+    <div class="tile" style="margin-top:40px">
+      <h3>Certificados</h3>
+      <div class="chips"><span class="chip">Salesforce CRM</span><span class="chip">PostgreSQL</span><span class="chip">Git e GitHub</span><span class="chip">AWS Cloud Practitioner</span></div>
+    </div>
+  </section>
+ 
+  <section id="habilidades">
+    <h2>Habilidades</h2>
+    <p class="lead">As tecnologias que uso no dia a dia.</p>
+    <div class="skills">
+      <div class="tile">
+        <h3>Linguagens</h3>
+        <div class="chips"><span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">Java</span><span class="chip">SQL</span></div>
+      </div>
+      <div class="tile">
+        <h3>Web e back-end</h3>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">API REST</span><span class="chip">Design responsivo</span></div>
+      </div>
+      <div class="tile">
+        <h3>Dados e IA</h3>
+        <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Aplicação de IA</span><span class="chip">Agentes de IA</span><span class="chip">Salesforce CRM</span></div>
+      </div>
+      <div class="tile">
+        <h3>Fundamentos</h3>
+        <div class="chips"><span class="chip">Lógica computacional</span><span class="chip">Resolução de problemas</span><span class="chip">Git e GitHub</span></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="projetos">
+    <h2>Projetos</h2>
+    <p class="lead">Um pouco do que já construí.</p>
+    <div class="projects">
+      <div class="proj main">
+        <span class="tag">1º lugar em competição de empreendedorismo</span>
+        <h3>Projeto Lumina</h3>
+        <p>Plataforma de ensino de matemática, do nível básico ao superior, com um agente de IA integrado que acompanha o aluno em cada etapa.</p>
+      </div>
+      <a class="proj" href="https://github.com/guilhermemotaa/meusite" target="_blank" rel="noopener">
+        <h3>Este site</h3>
+        <p>Meu portfólio, feito do zero com HTML, CSS e JavaScript, com tema claro e escuro e formulário de contato.</p>
+        <span class="go">Ver código</span>
+      </a>
+      <div class="proj">
+        <h3>Projetos de extensão</h3>
+        <p>Museu da Computação e Conectando Saberes, iniciativas da UFU voltadas à comunidade.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="contato">
+    <div class="contact">
+      <div>
+        <h2>Vamos conversar?</h2>
+        <p class="lead">Aberto a estágios, projetos e boas conversas sobre tecnologia. Escolha o canal que preferir.</p>
+        <div class="links-c">
+          <a href="https://wa.me/5534998766133?text=Ol%C3%A1%20Guilherme%2C%20vi%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener"><span>WhatsApp</span><span>Abrir conversa</span></a>
+          <button type="button" id="copy" data-email="guilherme260607@gmail.com"><span>E-mail</span><span>Copiar endereço</span></button>
+          <a href="https://github.com/guilhermemotaa" target="_blank" rel="noopener"><span>GitHub</span><span>@guilhermemotaa</span></a>
         </div>
-       <h1>
-        Guilherme Mota
-       </h1>
-       <h2>
-        Programador e Desenvolvedor
-       </h2>
-       <main>
-            <section>
-                <h3>Sobre mim</h3>
-                <p>
-                    Meu nome é Guilherme Mota, tenho 18 anos e sou estudante de Ciência da Computação na Universidade Federal de Uberlândia (UFU). Ao longo da graduação, venho construindo uma base sólida em programação e lógica computacional, sempre buscando entender as soluções de forma profunda e eficiente.<br><br>
-                    Tenho conhecimentos em C, C++, Python, HTML e CSS, entre outras tecnologias, o que me permite atuar tanto na programação quanto no desenvolvimento web. Sou dedicado, proativo e curioso, com facilidade para aprender novas ferramentas e enfrentar novos desafios.<br><br>
-                    Atualmente, busco aprimorar minhas habilidades técnicas, ganhar experiência prática e construir uma trajetória consistente na área de tecnologia.
-                </p>
-                <h3>Formação</h3>
-                <p>
-                    Ensino Superior
-                    Ciência da computação- Universidade Federal de Uberlândia (curso em andamento)
-                </p>
-                <h3>Cursos</h3>
-                <p>
-                    Fluente em inglês (Certificado TOEFL- Nível C1)<br>
-                    Nível intermediário em francês <br>
-                    Linguagens de Programação: C,C++,Python,JavaScript,HTML,CSS
-                </p>
-            </section>
-       </main>
-    </header>
+      </div>
+      <form id="form">
+        <div><label for="n">Seu nome</label><input id="n" required placeholder="Como posso te chamar?"></div>
+        <div><label for="m">Mensagem</label><textarea id="m" required placeholder="Escreva aqui sua mensagem"></textarea></div>
+        <button class="btn light" type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </section>
+</main>
+ 
+<footer class="wrap">
+  <span>© <span id="y"></span> Guilherme Mota</span>
+  <span>Feito em Uberlândia, MG</span>
+</footer>
+ 
+<div class="toast" id="toast" role="status"></div>
+ 
+<script>
+const $=s=>document.querySelector(s), root=document.documentElement;
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2400)}
+$("#y").textContent=new Date().getFullYear();
+ 
+// Tema
+try{const s=localStorage.getItem("tema");if(s)root.dataset.theme=s}catch(e){}
+$("#theme").onclick=()=>{
+  const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  root.dataset.theme=dark?"light":"dark";
+  try{localStorage.setItem("tema",root.dataset.theme)}catch(e){}
+};
+ 
+// Menu mobile
+const links=$("#links"),mb=$("#menu");
+mb.onclick=()=>{const o=links.classList.toggle("open");mb.setAttribute("aria-expanded",o)};
+links.onclick=e=>{if(e.target.tagName==="A"){links.classList.remove("open");mb.setAttribute("aria-expanded",false)}};
+ 
+// Seção ativa no menu
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)document.querySelectorAll(".links a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))
+}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("section").forEach(s=>io.observe(s));
+ 
+// Copiar e-mail
+$("#copy").onclick=async e=>{
+  try{await navigator.clipboard.writeText(e.currentTarget.dataset.email);toast("E-mail copiado")}
+  catch(err){toast(e.currentTarget.dataset.email)}
+};
+ 
+// Formulário abre o app de e-mail já preenchido
+$("#form").onsubmit=e=>{
+  e.preventDefault();
+  const n=$("#n").value.trim(),m=$("#m").value.trim(),to=$("#copy").dataset.email;
+  location.href=`mailto:${to}?subject=${encodeURIComponent("Contato pelo site, "+n)}&body=${encodeURIComponent(m+"\n\n"+n)}`;
+  toast("Abrindo seu app de e-mail");
+};
+</script>
 </body>
-
 </html>
-
-
-
+ 
+Claude terminou a resposta
